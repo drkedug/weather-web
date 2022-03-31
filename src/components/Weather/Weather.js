@@ -50,7 +50,6 @@ export const Weather = () => {
   }
 
   const handleCardClick = (e) => {
-    console.log(weatherData)
     setCardSelected(e);
   }
 
@@ -68,63 +67,64 @@ export const Weather = () => {
   }
   
   return (
-    <WeatherContainer>
-      {((cardSelected != -1) && weatherData) ? 
-        <WeatherCardBig
-          number={weatherData[cardSelected].number}
-          name={weatherData[cardSelected].name}
-          icon={weatherData[cardSelected].icon}
-          detailedFC={weatherData[cardSelected].detailedForecast}
-          shortFC={weatherData[cardSelected].shortForecast}
-          temp={weatherData[cardSelected].temperature}
-          windDir={weatherData[cardSelected].windDirection}
-          windSpeed={weatherData[cardSelected].windSpeed}
-          onClick={handleBigCardClick}
-        /> : null}
-      <AddressForm onSubmit={handleSubmit}>
-        <AddressDiv>
-          <AddressLabel>Structure and Street:</AddressLabel>
-          <AddressInput type="text"/>
-        </AddressDiv>
-        <AddressDiv>
-          <AddressLabel>City:</AddressLabel>
-          <AddressInput type="text"/>
-        </AddressDiv>
-        <AddressDiv>
-          <AddressLabel>State:</AddressLabel>
-          <AddressInput type="text"/>
-        </AddressDiv>
-        <AddressDiv>
-          <AddressLabel>ZIP Code:</AddressLabel>
-          <AddressInput type="text"/>
-        </AddressDiv>
-        <AddressDiv>
-          <AddressSubmit type="submit">Submit</AddressSubmit>
-        </AddressDiv>
-      </AddressForm>
-      <AddressDisplay>{address}</AddressDisplay>
-      <CardsWrapper>
-        <CardsContainer>
-          {weatherData ? weatherData.map((e, i) => {
-            return (
-              <WeatherCard
-                key={e.number}
-                number={e.number}
-                index={i}
-                name={e.name}
-                icon={e.icon}
-                detailedFC={e.detailedForecast}
-                shortFC={e.shortForecast}
-                temp={e.temperature}
-                windDir={e.windDirection}
-                windSpeed={e.windSpeed}
-                onClick={handleCardClick}
-              />
-            )
-          }) : 'There isn\'t data for that address'}
-        </CardsContainer>
-      </CardsWrapper>
-    </WeatherContainer>
+    <>
+      <FormTitle>Input Address</FormTitle>
+      <WeatherContainer>
+        {((cardSelected != -1) && weatherData) ? 
+          <WeatherCardBig
+            number={weatherData[cardSelected].number}
+            name={weatherData[cardSelected].name}
+            icon={weatherData[cardSelected].icon}
+            detailedFC={weatherData[cardSelected].detailedForecast}
+            shortFC={weatherData[cardSelected].shortForecast}
+            temp={weatherData[cardSelected].temperature}
+            windDir={weatherData[cardSelected].windDirection}
+            windSpeed={weatherData[cardSelected].windSpeed}
+            onClick={handleBigCardClick}
+          /> : null}
+        <FormWrapper>
+          <AddressForm onSubmit={handleSubmit}>
+            <AddressDiv>
+              <AddressInput required placeholder="Structure and Street*" type="text"/>
+            </AddressDiv>
+            <AddressDiv>
+              <AddressInput placeholder='City (optional)' type="text"/>
+            </AddressDiv>
+            <AddressDiv>
+              <AddressInput placeholder='State (optional)' type="text"/>
+            </AddressDiv>
+            <AddressDiv>
+              <AddressInput placeholder='ZIP Code (optional)' type="text"/>
+            </AddressDiv>
+            <AddressDiv>
+              <AddressSubmit type="submit">SUBMIT</AddressSubmit>
+            </AddressDiv>
+          </AddressForm>
+        </FormWrapper>
+        <CardsWrapper>
+          <CardsContainer>
+            {weatherData ? weatherData.map((e, i) => {
+              return (
+                <WeatherCard
+                  key={e.number}
+                  number={e.number}
+                  index={i}
+                  name={e.name}
+                  icon={e.icon}
+                  detailedFC={e.detailedForecast}
+                  shortFC={e.shortForecast}
+                  temp={e.temperature}
+                  windDir={e.windDirection}
+                  windSpeed={e.windSpeed}
+                  onClick={handleCardClick}
+                />
+              )
+            }) : 'There isn\'t data for that address'}
+          </CardsContainer>
+        </CardsWrapper>
+        <AddressDisplay>{address}</AddressDisplay>
+      </WeatherContainer>
+    </>
   )
 }
 
@@ -132,26 +132,42 @@ const today = new Date();
 const hour = today.getHours();
 const colors = colorSet(hour);
 
+const FormTitle = styled.h1`
+  background-color: #EEEEEE;
+  margin: 0px;
+  position: absolute;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  align-items: center;
+  text-align: center;
+`
+
 const AddressDisplay = styled.h2`
   display: flex;
   justify-content: center;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #000000;
-  color: #E9EEEF;
+  color: #555555;
+  background-color: rgba(238, 238, 238, 0.8);
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: 0 auto;
 `
 
 const WeatherContainer = styled.div`
   background-image: linear-gradient(#${colors[0]}, #${colors[1]});
+  font-family: Ubuntu, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  overflow: hidden;
   height: 100vh;
+  padding-top: 24px;
 `
 
 const CardsContainer = styled.div`
-  border: 2px solid #000000;
   padding: 16px;
   padding-top: 48px;
+  margin-top: -8px;
   align-items: center;
   justify-content: left;
   display: flex;
@@ -173,30 +189,27 @@ const CardsWrapper = styled.div`
 `
 
 const AddressInput = styled.input`
-  border-color: #7F7F7F;
+  border-color: #E3E4D5;
   background-color: #E3E4D5;
   border-radius: 4px;
+  width: 256px;
+  font-size: 18px;
   padding: 4px;
 `
 
-const AddressLabel = styled.label`
-  padding-bottom: 8px;
-  width: 256px;
-  font-weight: 900;
-  font-size: 24px;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #000000;
-  color: #E9EEEF;
+const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `
 
 const AddressForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   padding: 8px 0px;
   align-items: center;
   justify-content: center;
+  margin-top: 16px;
 `
 
 const AddressDiv = styled.div`
@@ -205,16 +218,21 @@ const AddressDiv = styled.div`
   width: 256px;
   margin: 6px 0px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
 `
 
 const AddressSubmit = styled.button`
   font-size: 16px;
-  font-family: Tahoma, sans-serif;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.25px;
+  font-weight: 600;
   margin-top: 4px;
-  width: 256px;
+  width: 230px;
+  justify-content: center;
   height: 48px;
   border-radius: 8px;
-  border-color: #7F7F7F;
+  border-color: #E3E4D5;
   background-color: #E3E4D5;
 `
 

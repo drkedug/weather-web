@@ -22,7 +22,11 @@ const WeatherCard: React.FC<WeatherProps> = (props) => {
         <TitleDiv>{props.name}</TitleDiv>
         <IconImg src={props.icon}/>
         <DescriptionDiv>{props.shortFC}</DescriptionDiv>
-        <TempDiv>{`${props.temp}°F / ${celsiusTemp}°C`}</TempDiv>
+        <TempGroup>
+        <TempDiv>{`${props.temp}°F`}</TempDiv>
+        <TempDivider/>
+        <TempDiv>{`${celsiusTemp}°C`}</TempDiv>
+        </TempGroup>
         <WindDiv>{`${props.windSpeed}, ${props.windDir}`}</WindDiv>
       </CardContainer>
     )
@@ -43,11 +47,11 @@ const CardContainer = styled.div`
     }
     
     90% {
-      transform: translate(0px, -12%)
+      transform: translate(0px, -10%)
     }
 
     100% {
-        transform: translate(0px, -12%)
+        transform: translate(0px, -10%)
     }
   }
 
@@ -57,12 +61,12 @@ const CardContainer = styled.div`
     animation-fill-mode: forwards;
   }
 
-  border: 2px solid #000000;
   border-radius: 4px;
   border-color: #000000;
   background-color: rgba(238, 238, 238, 0.8);
-  box-shadow: 3px 6px 2px black;
+  box-shadow: 5px 1px 5px #B0B0B0;
   width: 120px;
+  min-width: 120px;
   height: 312px;
   display: flex;
   flex-direction: column;
@@ -71,19 +75,19 @@ const CardContainer = styled.div`
 
 const TitleDiv = styled.div`
   display: flex;
-  padding: 4px;
+  padding: 12px 0px;
   justify-content: center;
+  font-weight: 600;
 `
 
 const IconImg = styled.img`
-  border: 2px solid #000000;
   border-radius: 8px;
   width: 100px;
   align-self: center;
 `
 
 const DescriptionDiv = styled.div`
-  margin-top: 4px;
+  margin-top: 12px;
   align-self: center;
   text-align: center;
   font-size: 14px;
@@ -92,11 +96,24 @@ const DescriptionDiv = styled.div`
 
 const TempDiv = styled.h2`
   text-align: center;
-  min-height: 76px;
+  min-height: 0px;
+  margin-bottom: -12px;
+`
+
+const TempDivider = styled.div`
+  margin-top: 18px;
+  margin-bottom: -12px;
+  margin-right: 40px;
+  margin-left: 40px;
+  border: 1px solid #C0C0C0;
+`
+
+const TempGroup = styled.div`
+  margin-top: -4px;
 `
 
 const WindDiv = styled.div`
-  margin-top: 8px;
+  margin-top: 22px;
   align-self: center;
   text-align: center;
   font-size: 12px;
