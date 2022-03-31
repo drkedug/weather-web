@@ -27,6 +27,26 @@ const WeatherCard: React.FC<WeatherProps> = (props) => {
 }
 
 const CardContainer = styled.div`
+  @keyframes animate {
+    0% {
+      transform: translate(0px, 0px)
+    }
+
+    30% {
+        transform: translate(0px, -25%)
+    }
+
+    100% {
+        transform: translate(0px, -20%)
+    }
+  }
+
+  :hover {
+    animation-name: animate;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
+
   border: 2px solid #000000;
   border-radius: 8px;
   border-color: #000000;

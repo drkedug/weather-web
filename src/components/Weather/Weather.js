@@ -132,7 +132,6 @@ const CardsContainer = styled.div`
   gap: 6px;
   font-size: 24px;
 
-
   :hover {
     overflow: auto;
   }
