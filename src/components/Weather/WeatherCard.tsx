@@ -23,9 +23,9 @@ const WeatherCard: React.FC<WeatherProps> = (props) => {
         <IconImg src={props.icon}/>
         <DescriptionDiv>{props.shortFC}</DescriptionDiv>
         <TempGroup>
-        <TempDiv>{`${props.temp}°F`}</TempDiv>
-        <TempDivider/>
-        <TempDiv>{`${celsiusTemp}°C`}</TempDiv>
+          <TempDiv>{`${props.temp}°F`}</TempDiv>
+          <TempDivider/>
+          <TempDiv>{`${celsiusTemp}°C`}</TempDiv>
         </TempGroup>
         <WindDiv>{`${props.windSpeed}, ${props.windDir}`}</WindDiv>
       </CardContainer>
@@ -90,7 +90,7 @@ const DescriptionDiv = styled.div`
   margin-top: 12px;
   align-self: center;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   min-height: 48px;
 `
 
