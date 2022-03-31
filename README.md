@@ -1,3 +1,6 @@
+### nvm use 14
+Use node version manager 14 to run this project
+
 ### npm install
 to install the project
 
