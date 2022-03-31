@@ -77,7 +77,7 @@ const CardContainer = styled.div`
   border: 2px solid #000000;
   border-radius: 8px;
   border-color: #000000;
-  background-color: #EEEEEE;
+  background-color: rgba(238, 238, 238, 0.9);
   width: 596px;
   height: 732px;
   display: flex;

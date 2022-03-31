@@ -57,11 +57,11 @@ const CardContainer = styled.div`
   }
 
   border: 2px solid #000000;
-  border-radius: 8px;
+  border-radius: 4px;
   border-color: #000000;
-  background-color: #EEEEEE;
-  min-width: 124px;
-  height: 316px;
+  background-color: rgba(238, 238, 238, 0.8);
+  width: 120px;
+  height: 312px;
   display: flex;
   flex-direction: column;
   font-size: 14px;
@@ -76,7 +76,7 @@ const TitleDiv = styled.div`
 const IconImg = styled.img`
   border: 2px solid #000000;
   border-radius: 8px;
-  width: 80%;
+  width: 100px;
   align-self: center;
 `
 

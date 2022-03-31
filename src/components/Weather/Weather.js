@@ -129,7 +129,7 @@ export const Weather = () => {
 
 const today = new Date();
 const hour = today.getHours();
-const colors = colorSet(hour);
+const colors = colorSet(21);
 
 const AddressDisplay = styled.h2`
   display: flex;
@@ -149,15 +149,16 @@ const WeatherContainer = styled.div`
 
 const CardsContainer = styled.div`
   border: 2px solid #000000;
-  padding: 4px;
+  padding: 16px;
   padding-top: 48px;
   align-items: center;
   justify-content: left;
-  overflow: hidden;
   display: flex;
   flex-direction: row;
   gap: 6px;
   font-size: 24px;
+
+  overflow: hidden;
 
   :hover {
     overflow: auto;
