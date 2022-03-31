@@ -49,9 +49,9 @@ export const Weather = () => {
     }
   }
 
-  const handleCardClick = (data) => {
+  const handleCardClick = (e) => {
     console.log(weatherData)
-    setCardSelected(data-1);
+    setCardSelected(e);
   }
 
   const handleBigCardClick = () => {
@@ -105,11 +105,12 @@ export const Weather = () => {
       <AddressDisplay>{address}</AddressDisplay>
       <CardsWrapper>
         <CardsContainer>
-          {weatherData ? weatherData.map(e => {
+          {weatherData ? weatherData.map((e, i) => {
             return (
               <WeatherCard
                 key={e.number}
                 number={e.number}
+                index={i}
                 name={e.name}
                 icon={e.icon}
                 detailedFC={e.detailedForecast}

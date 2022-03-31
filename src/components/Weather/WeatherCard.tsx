@@ -12,12 +12,13 @@ type WeatherProps = {
   windDir: string;
   windSpeed: string;
   onClick: any;
+  index: number;
 }
 
 const WeatherCard: React.FC<WeatherProps> = (props) => {
     const celsiusTemp = Math.round(((props.temp-32)*5)/9);
     return (
-      <CardContainer onClick={() => props.onClick(props.number)}>
+      <CardContainer onClick={() => props.onClick(props.index)}>
         <TitleDiv>{props.name}</TitleDiv>
         <IconImg src={props.icon}/>
         <DescriptionDiv>{props.shortFC}</DescriptionDiv>
