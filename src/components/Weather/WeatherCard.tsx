@@ -20,7 +20,6 @@ const WeatherCard: React.FC<WeatherProps> = (props) => {
         <IconImg src={props.icon}/>
         <DescriptionDiv>{props.shortFC}</DescriptionDiv>
         <TempDiv>{`${props.temp}°F / ${celsiusTemp}°C`}</TempDiv>
-        <LargeDescriptionDiv>{`${props.detailedFC}`}</LargeDescriptionDiv>
         <WindDiv>{`${props.windSpeed}, ${props.windDir}`}</WindDiv>
       </CardContainer>
     )
@@ -33,11 +32,19 @@ const CardContainer = styled.div`
     }
 
     30% {
-        transform: translate(0px, -25%)
+        transform: translate(0px, -15%)
+    }
+
+    33% {
+        transform: translate(0px, -15%)
+    }
+    
+    90% {
+      transform: translate(0px, -12%)
     }
 
     100% {
-        transform: translate(0px, -20%)
+        transform: translate(0px, -12%)
     }
   }
 
@@ -51,8 +58,8 @@ const CardContainer = styled.div`
   border-radius: 8px;
   border-color: #000000;
   background-color: #EEEEEE;
-  min-width: 125px;
-  height: 376px;
+  min-width: 124px;
+  height: 316px;
   display: flex;
   flex-direction: column;
   font-size: 14px;

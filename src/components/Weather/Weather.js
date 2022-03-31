@@ -124,6 +124,7 @@ const WeatherContainer = styled.div`
 const CardsContainer = styled.div`
   border: 2px solid #000000;
   padding: 4px;
+  padding-top: 48px;
   align-items: center;
   justify-content: left;
   overflow: hidden;
