@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { getAddress } from '../../services/Geofind.service';
 import { getGridpoints, getWeather } from '../../services/Weather.service';
 import { WeatherCard } from './WeatherCard.tsx';
+import { WeatherCardBig } from './WeatherCardBig.tsx';
 import { colorSet } from './colorSet';
 
 export const Weather = () => {
@@ -10,6 +11,7 @@ export const Weather = () => {
   const [coordinates, setCoordinates] = useState();
   const [gridpoints, setGridpoints] = useState();
   const [weatherData, setWeatherData] = useState();
+  const [cardSelected, setCardSelected] = useState(-1);
 
   const getCoord = () => {
     if(address) {
@@ -47,6 +49,15 @@ export const Weather = () => {
     }
   }
 
+  const handleCardClick = (data) => {
+    console.log(weatherData)
+    setCardSelected(data-1);
+  }
+
+  const handleBigCardClick = () => {
+    setCardSelected(-1);
+  }
+
   useEffect(getCoord, [address]);
   useEffect(getPoints, [coordinates]);
   useEffect(getLocalWeather, [gridpoints]);
@@ -58,6 +69,18 @@ export const Weather = () => {
   
   return (
     <WeatherContainer>
+      {((cardSelected != -1) && weatherData) ? 
+        <WeatherCardBig
+          number={weatherData[cardSelected].number}
+          name={weatherData[cardSelected].name}
+          icon={weatherData[cardSelected].icon}
+          detailedFC={weatherData[cardSelected].detailedForecast}
+          shortFC={weatherData[cardSelected].shortForecast}
+          temp={weatherData[cardSelected].temperature}
+          windDir={weatherData[cardSelected].windDirection}
+          windSpeed={weatherData[cardSelected].windSpeed}
+          onClick={handleBigCardClick}
+        /> : null}
       <AddressForm onSubmit={handleSubmit}>
         <AddressDiv>
           <AddressLabel>Structure and Street:</AddressLabel>
@@ -86,6 +109,7 @@ export const Weather = () => {
             return (
               <WeatherCard
                 key={e.number}
+                number={e.number}
                 name={e.name}
                 icon={e.icon}
                 detailedFC={e.detailedForecast}
@@ -93,7 +117,9 @@ export const Weather = () => {
                 temp={e.temperature}
                 windDir={e.windDirection}
                 windSpeed={e.windSpeed}
-              />)
+                onClick={handleCardClick}
+              />
+            )
           }) : 'There isn\'t data for that address'}
         </CardsContainer>
       </CardsWrapper>

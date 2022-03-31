@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 type WeatherProps = {
   key: number;
+  number: number;
   name: string;
   icon: string;
   detailedFC: string;
@@ -10,12 +11,13 @@ type WeatherProps = {
   temp: number;
   windDir: string;
   windSpeed: string;
+  onClick: any;
 }
 
 const WeatherCard: React.FC<WeatherProps> = (props) => {
     const celsiusTemp = Math.round(((props.temp-32)*5)/9);
     return (
-      <CardContainer>
+      <CardContainer onClick={() => props.onClick(props.number)}>
         <TitleDiv>{props.name}</TitleDiv>
         <IconImg src={props.icon}/>
         <DescriptionDiv>{props.shortFC}</DescriptionDiv>
@@ -85,15 +87,10 @@ const DescriptionDiv = styled.div`
   font-size: 14px;
   min-height: 48px;
 `
-const LargeDescriptionDiv = styled.div`
-  align-self: center;
-  text-align: center;
-  font-size: 9px;
-  min-height: 112px;
-`
 
 const TempDiv = styled.h2`
   text-align: center;
+  min-height: 76px;
 `
 
 const WindDiv = styled.div`
