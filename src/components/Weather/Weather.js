@@ -129,7 +129,7 @@ export const Weather = () => {
 
 const today = new Date();
 const hour = today.getHours();
-const colors = colorSet(21);
+const colors = colorSet(hour);
 
 const AddressDisplay = styled.h2`
   display: flex;
@@ -174,7 +174,7 @@ const CardsWrapper = styled.div`
 const AddressInput = styled.input`
   border-color: #7F7F7F;
   background-color: #E3E4D5;
-  border-radius: 16px;
+  border-radius: 4px;
   padding: 4px;
 `
 
