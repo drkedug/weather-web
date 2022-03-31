@@ -160,7 +160,7 @@ const WeatherContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   overflow: hidden;
-  height: 100vh;
+  height: 97.4vh;
   padding-top: 24px;
 `
 
