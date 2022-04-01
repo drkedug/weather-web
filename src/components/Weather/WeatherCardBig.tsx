@@ -10,7 +10,7 @@ type WeatherProps = {
   temp: number;
   windDir: string;
   windSpeed: string;
-  onClick: any;
+  onClick: () => void;
 }
 
 const WeatherCardBig: React.FC<WeatherProps> = (props) => {
