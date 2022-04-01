@@ -65,6 +65,26 @@ const Weather = () => {
     event.preventDefault();
     setAddress(`${event.target[0].value}, ${event.target[1].value}, ${event.target[2].value} ${event.target[3].value}`);
   }
+
+  const weatherList = () => {
+    return weatherData ? weatherData.map((e, i) => {
+      return (
+        <WeatherCard
+          key={e.number}
+          number={e.number}
+          index={i}
+          name={e.name}
+          icon={e.icon}
+          detailedFC={e.detailedForecast}
+          shortFC={e.shortForecast}
+          temp={e.temperature}
+          windDir={e.windDirection}
+          windSpeed={e.windSpeed}
+          onClick={handleCardClick}
+        />
+      )
+    }) : 'There isn\'t data for that address'
+  }
   
   return (
     <>
@@ -103,23 +123,7 @@ const Weather = () => {
         </FormWrapper>
         <CardsWrapper>
           <CardsContainer>
-            {weatherData ? weatherData.map((e, i) => {
-              return (
-                <WeatherCard
-                  key={e.number}
-                  number={e.number}
-                  index={i}
-                  name={e.name}
-                  icon={e.icon}
-                  detailedFC={e.detailedForecast}
-                  shortFC={e.shortForecast}
-                  temp={e.temperature}
-                  windDir={e.windDirection}
-                  windSpeed={e.windSpeed}
-                  onClick={handleCardClick}
-                />
-              )
-            }) : 'There isn\'t data for that address'}
+            {weatherList()}
           </CardsContainer>
         </CardsWrapper>
         <AddressDisplay>{address}</AddressDisplay>
