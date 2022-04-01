@@ -6,7 +6,7 @@ import { WeatherCard } from './WeatherCard.tsx';
 import { WeatherCardBig } from './WeatherCardBig.tsx';
 import { colorSet } from './colorSet';
 
-export const Weather = () => {
+const Weather = () => {
   const [address, setAddress] = useState("4600 Silver Hill Rd, Washington, DC 20233");
   const [coordinates, setCoordinates] = useState();
   const [gridpoints, setGridpoints] = useState();
@@ -70,7 +70,7 @@ export const Weather = () => {
     <>
       <FormTitle>Input Address</FormTitle>
       <WeatherContainer>
-        {((cardSelected != -1) && weatherData) ? 
+        {((cardSelected !== -1) && weatherData) ? 
           <WeatherCardBig
             number={weatherData[cardSelected].number}
             name={weatherData[cardSelected].name}
@@ -236,4 +236,4 @@ const AddressSubmit = styled.button`
   background-color: #E3E4D5;
 `
 
-export default Weather;
+export { Weather };
