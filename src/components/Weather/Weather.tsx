@@ -2,15 +2,37 @@ import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { getAddress } from '../../services/Geofind.service';
 import { getGridpoints, getWeather } from '../../services/Weather.service';
-import { WeatherCard } from './WeatherCard.tsx';
-import { WeatherCardBig } from './WeatherCardBig.tsx';
+import { WeatherCard } from './WeatherCard';
+import { WeatherCardBig } from './WeatherCardBig';
 import { colorSet } from './colorSet';
 
-const Weather = () => {
-  const [address, setAddress] = useState("4600 Silver Hill Rd, Washington, DC 20233");
-  const [coordinates, setCoordinates] = useState();
-  const [gridpoints, setGridpoints] = useState();
-  const [weatherData, setWeatherData] = useState();
+type CoordinateTypes = {
+  x: number;
+  y: number;
+}
+
+type GridpointsType = {
+  cwa: string;
+  gridX: number;
+  gridY: number;
+}
+
+type WeatherDataType = {
+  number: number;
+  name: string;
+  icon: string;
+  detailedForecast: string;
+  shortForecast: string;
+  temperature: number;
+  windDirection: string;
+  windSpeed: string;
+}
+
+const Weather: React.FC = () => {
+  const [address, setAddress] = useState<string>("4600 Silver Hill Rd, Washington, DC 20233");
+  const [coordinates, setCoordinates] = useState<CoordinateTypes | undefined>();
+  const [gridpoints, setGridpoints] = useState<GridpointsType | undefined>();
+  const [weatherData, setWeatherData] = useState<Array<WeatherDataType>>();
   const [cardSelected, setCardSelected] = useState(-1);
 
   const getCoord = () => {
@@ -92,6 +114,7 @@ const Weather = () => {
       <WeatherContainer>
         {((cardSelected !== -1) && weatherData) ? 
           <WeatherCardBig
+            key={weatherData[cardSelected].number}
             number={weatherData[cardSelected].number}
             name={weatherData[cardSelected].name}
             icon={weatherData[cardSelected].icon}
