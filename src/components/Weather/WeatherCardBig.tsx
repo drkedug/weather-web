@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 type WeatherProps = {
   key: number;
+  number: number;
   name: string;
   icon: string;
   detailedFC: string;
